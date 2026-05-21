@@ -4,17 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Artistic Conception</title>
-  <!--
-  ============================================================
-  HOW TO EDIT THIS WEBSITE LATER
-  ============================================================
-  1. CHANGE WEBSITE TITLE -> Search for: ARTISTIC CONCEPTION
-  2. ADD NEW ARTWORKS     -> Search for: ARTWORK DATA START
-  3. CHANGE INSTAGRAM LINK -> Search for: YOUR_INSTAGRAM_LINK_HERE
-  4. CHANGE WHATSAPP NUMBER -> Search for: YOUR_WHATSAPP_NUMBER_HERE
-  5. CHANGE COLORS         -> Search for: :root
-  ============================================================
-  -->
   <style>
     * {
       margin: 0;
@@ -23,44 +12,45 @@
     }
 
     :root {
-      --bg: #050505;
-      --bg-secondary: #111111;
-      --text: #f5f5f5;
-      --text-soft: #bdbdbd;
-      --border: rgba(255,255,255,0.12);
-      --glow: rgba(255,255,255,0.08);
-      --card: rgba(255,255,255,0.03);
+      --bg: #0a0a0c;
+      --bg-secondary: #121216;
+      --text: #f8f9fa;
+      --text-soft: #a0a5b5;
+      --accent: #ffffff;
+      --border: rgba(255,255,255,0.08);
+      --card-bg: rgba(255,255,255,0.02);
     }
 
     body.light-mode {
-      --bg: #f2efe8;
-      --bg-secondary: #e8e2d9;
-      --text: #111111;
-      --text-soft: #555555;
-      --border: rgba(0,0,0,0.08);
-      --glow: rgba(0,0,0,0.05);
-      --card: rgba(0,0,0,0.03);
+      --bg: #f9f8f6;
+      --bg-secondary: #efece6;
+      --text: #111115;
+      --text-soft: #606470;
+      --accent: #000000;
+      --border: rgba(0,0,0,0.06);
+      --card-bg: rgba(0,0,0,0.02);
     }
 
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
       overflow-x: hidden;
-      transition: background 0.5s ease, color 0.5s ease;
+      transition: background 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
     }
 
     h1, h2, h3 {
       font-family: Georgia, serif;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
+      font-weight: 400;
     }
 
     section {
-      padding: 80px 24px;
-      max-width: 1200px;
+      padding: 120px 24px;
+      max-width: 1400px;
       margin: 0 auto;
-      position: relative;
     }
 
     /* INTRO SCREEN */
@@ -68,152 +58,119 @@
       position: fixed;
       inset: 0;
       background: #000;
-      z-index: 9999;
+      z-index: 99999;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
       opacity: 1;
       visibility: visible;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
     }
 
     #intro h1 {
-      font-size: 2rem;
+      font-size: 1.5rem;
       color: white;
-      letter-spacing: 6px;
-      animation: pulse 2s infinite;
+      letter-spacing: 10px;
+      animation: pulse 2s infinite ease-in-out;
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 1; }
+      0%, 100% { opacity: 0.3; transform: scale(0.98); }
+      50% { opacity: 1; transform: scale(1); }
     }
 
-    /* FILM GRAIN Overlay */
+    /* FILM GRAIN */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
-      opacity: 0.05;
+      opacity: 0.03;
       pointer-events: none;
-      z-index: 999;
-    }
-
-    /* SIDE NAVIGATION BAR */
-    .side-nav {
-      position: fixed;
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .side-card {
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 18px 8px;
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    body.light-mode .side-card {
-      background: rgba(0,0,0,0.04);
-    }
-
-    .side-card:hover {
-      background: rgba(255,255,255,0.15);
-      transform: rotate(180deg) scale(1.05);
+      z-index: 9999;
     }
 
     /* THEME TOGGLE */
     .theme-toggle {
       position: fixed;
-      top: 20px;
-      right: 20px;
+      top: 30px;
+      right: 30px;
       z-index: 1000;
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.05);
+      background: var(--bg-secondary);
       color: var(--text);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       cursor: pointer;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .theme-toggle:hover {
-      background: rgba(255,255,255,0.15);
+      transform: scale(1.05);
+      border-color: var(--text);
     }
 
     /* HERO */
     .hero {
-      min-height: 100vh;
+      min-height: 90vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 20px;
-      position: relative;
+      padding: 0 24px;
     }
 
     .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      margin-bottom: 16px;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      margin-bottom: 24px;
+      line-height: 1.1;
     }
 
     .hero p {
       color: var(--text-soft);
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      max-width: 600px;
-      margin-bottom: 12px;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      max-width: 700px;
+      margin-bottom: 8px;
+      font-family: Georgia, serif;
+      font-style: italic;
     }
 
     .hero-btn {
-      margin-top: 30px;
-      padding: 14px 32px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.06);
+      margin-top: 40px;
+      padding: 16px 40px;
+      border: 1px solid var(--text);
+      background: transparent;
       color: var(--text);
-      letter-spacing: 2px;
-      font-weight: bold;
+      letter-spacing: 3px;
+      font-size: 0.85rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      text-transform: uppercase;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .hero-btn:hover {
-      transform: translateY(-3px);
-      background: rgba(255,255,255,0.15);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      background: var(--text);
+      color: var(--bg);
+      transform: translateY(-4px);
     }
 
     /* FLASH CARDS */
     .flash-container {
       position: relative;
       width: 100%;
-      max-width: 450px;
+      max-width: 500px;
       margin: auto;
-      height: 550px;
-      border-radius: 24px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      height: 650px;
+      border-radius: 4px;
     }
 
     .flash-card {
@@ -221,10 +178,7 @@
       inset: 0;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid var(--border);
+      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), visibility 1s;
     }
 
     .flash-card.active {
@@ -236,189 +190,373 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      filter: brightness(0.85);
     }
 
     .flash-overlay {
       position: absolute;
       bottom: 0;
       inset: auto 0 0 0;
-      padding: 30px 24px;
-      background: linear-gradient(to top, rgba(0,0,0,0.95) 20%, rgba(0,0,0,0.6) 70%, transparent);
-      color: #ffffff !important; /* Preserves crisp reading contrast across light & dark theme shifts */
+      padding: 40px 30px;
+      background: linear-gradient(to top, rgba(0,0,0,0.95) 40%, transparent);
+      color: #ffffff !important;
     }
 
-    .flash-overlay p { opacity: 0.8; font-size: 0.9rem; color: #ffffff !important; }
-    .flash-overlay h3 { margin: 5px 0; font-size: 1.6rem; color: #ffffff !important; }
+    .flash-overlay p { opacity: 0.6; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
+    .flash-overlay h3 { margin: 8px 0; font-size: 1.8rem; }
+    .flash-overlay .flash-quote { font-style: italic; opacity: 0.8; font-size: 1rem; font-family: Georgia, serif; }
 
-    /* COLLECTIONS */
+    /* COLLECTIONS GRID */
     .section-title {
       text-align: center;
-      margin-bottom: 50px;
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: 70px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 1px;
+      background: var(--text-soft);
     }
 
     .collections {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 50px;
+    }
+
+    @media(max-width: 500px) {
+      .collections { grid-template-columns: 1fr; }
     }
 
     .collection-card {
-      background: var(--card);
+      background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 24px;
       overflow: hidden;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       display: flex;
       flex-direction: column;
-      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .collection-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+      border-color: var(--text-soft);
+      transform: translateY(-6px);
     }
 
     .collection-card img {
       width: 100%;
-      height: 350px;
+      height: 480px;
       object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .collection-card:hover img {
+      transform: scale(1.02);
     }
 
     .collection-content {
-      padding: 24px;
+      padding: 35px;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
     }
 
-    .collection-content h3 { margin-bottom: 10px; }
-    .collection-content .quote { font-style: italic; opacity: 0.75; margin-bottom: 12px; }
-    .collection-content p:not(.quote) { color: var(--text-soft); line-height: 1.6; margin-bottom: 20px; }
-    
-    .btn-group {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: auto;
+    .collection-content .meta-tag {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      opacity: 0.5;
+      text-transform: uppercase;
+      margin-bottom: 12px;
     }
 
+    .collection-content h3 { font-size: 1.8rem; margin-bottom: 14px; }
+    .collection-content .quote { font-family: Georgia, serif; font-style: italic; opacity: 0.8; margin-bottom: 16px; font-size: 1.05rem; }
+    .collection-content p:not(.quote):not(.meta-tag) { color: var(--text-soft); line-height: 1.7; margin-bottom: 30px; font-size: 0.95rem; }
+    
+    /* PREMIUM MINIMAL BUTTONS */
     .btn {
-      padding: 12px 20px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.05);
+      padding: 16px 28px;
+      border: 1px solid var(--text);
+      background: transparent;
       color: var(--text);
-      font-weight: 500;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       cursor: pointer;
-      transition: 0.3s ease;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 100%;
+      margin-top: auto;
     }
 
     .btn:hover {
-      background: rgba(255,255,255,0.15);
+      background: var(--text);
+      color: var(--bg);
     }
 
-    /* ABOUT & CONTACT */
-    .about {
-      max-width: 800px;
+    /* ABOUT & CONTACT ACCORDION Framework */
+    .center-box {
+      max-width: 750px;
       margin: auto;
       text-align: center;
-      line-height: 1.8;
+    }
+
+    .center-box p {
+      font-size: 1.1rem;
+      line-height: 1.9;
       color: var(--text-soft);
     }
 
-    .contact-buttons {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 30px;
+    .archive-link-btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding-bottom: 6px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+      border-bottom: 2px solid var(--text);
+      transition: opacity 0.2s;
+    }
+
+    .archive-link-btn:hover {
+      opacity: 0.7;
     }
 
     footer {
-      padding: 40px 20px;
+      padding: 60px 24px;
       text-align: center;
       color: var(--text-soft);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
       border-top: 1px solid var(--border);
-      margin-top: 40px;
+      margin-top: 60px;
     }
 
-    /* MODAL */
+    /* MODAL LAYER OVERHAUL */
     .modal {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.85);
+      background: rgba(4,4,6,0.96);
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      z-index: 99999;
-      backdrop-filter: blur(5px);
+      padding: 24px;
+      z-index: 100000;
+      overflow-y: auto;
     }
 
     .modal-content {
       width: 100%;
-      max-width: 500px;
+      max-width: 1000px;
       background: var(--bg-secondary);
       border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 30px;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      position: relative;
     }
 
-    .modal-content h3 { margin-bottom: 20px; }
+    @media(max-width: 820px) {
+      .modal-content { grid-template-columns: 1fr; gap: 30px; padding: 24px; max-width: 500px;}
+      .preview-pane { min-height: 300px; }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0.5;
+    }
+    .modal-close:hover { opacity: 1; }
+
+    /* REALTIME PRODUCTION PREVIEW MOCKUP */
+    .preview-pane {
+      background: #000000;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 100%;
+    }
+
+    .mockup-frame {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      position: relative;
+    }
+
+    /* Target Artwork Surface */
+    .mockup-art-render {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.4s ease;
+    }
+
+    /* Adaptive Mockup State Render Overlays */
+    .mockup-frame.state-hoodie {
+      background: #141414;
+    }
+    .mockup-frame.state-hoodie .mockup-art-render {
+      width: 160px;
+      height: 200px;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      border-radius: 2px;
+      z-index: 2;
+    }
+    /* Simple stylized hoodie shape generator vector line background */
+    .mockup-frame.state-hoodie::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 320px;
+      background: url('https://pub-c2da5424df994b6fa723439b16c87157.r2.dev/hoodie-outline.png') center/contain no-repeat;
+      opacity: 0.15;
+      z-index: 1;
+    }
+
+    .mockup-frame.state-poster { background: #1e1e1e; padding: 40px; }
+    .mockup-frame.state-poster .mockup-art-render {
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8);
+      border: 12px solid #ffffff;
+    }
+
+    .mockup-frame.state-canvas { background: #161616; padding: 30px; }
+    .mockup-frame.state-canvas .mockup-art-render {
+      box-shadow: -10px 15px 30px rgba(0,0,0,0.7);
+      transform: perspective(800px) rotateY(15deg);
+    }
+
+    .mockup-frame.state-pendant { background: #0b0b0d; }
+    .mockup-frame.state-pendant .mockup-art-render {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 6px solid #d4af37; /* Gold Trim Rim */
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    }
+
+    .mockup-frame.state-wallpaper { background: #2c2c35; padding: 40px 60px; }
+    .mockup-frame.state-wallpaper .mockup-art-render {
+      border-radius: 24px;
+      border: 4px solid #000000;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.7);
+    }
+
+    /* VISUAL PRODUCT SELECTOR TILES */
+    .form-pane h3 { font-size: 1.6rem; margin-bottom: 25px; }
+    
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .product-tile {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 16px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .product-tile:hover {
+      border-color: var(--text-soft);
+    }
+
+    .product-tile.selected {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+
+    .input-row {
+      display: flex;
+      gap: 12px;
+    }
 
     .modal-content input,
-    .modal-content select,
     .modal-content textarea {
       width: 100%;
       padding: 14px;
       margin-bottom: 16px;
-      background: rgba(255,255,255,0.05);
+      background: var(--bg);
       border: 1px solid var(--border);
       color: var(--text);
-      border-radius: 8px;
+      font-family: inherit;
     }
 
-    body.light-mode .modal-content :is(input, select, textarea) {
-      background: rgba(0,0,0,0.03);
+    .modal-content input:focus,
+    .modal-content textarea:focus {
+      outline: none;
+      border-color: var(--text-soft);
     }
 
-    .notice {
-      font-size: 0.85rem;
+    .notice-box {
+      font-size: 0.8rem;
       color: var(--text-soft);
       line-height: 1.5;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+    }
+
+    /* Hiding rules for dynamic sizes */
+    #sizeContainer { transition: all 0.2s; }
+
+    /* CUSTOM EXCLUSIVE INSTAGRAM FORM REDIRECT BUTTON */
+    .insta-submit-btn {
+      background: var(--text) !important;
+      color: var(--bg) !important;
+    }
+    .insta-submit-btn:hover {
+      opacity: 0.9;
     }
 
     /* MOBILE RESPONSIVENESS */
     @media(max-width:768px){
-      section { padding: 60px 16px; }
-      .side-nav { display: none; }
-      .flash-container { height: 450px; }
+      section { padding: 80px 16px; }
+      .flash-container { height: 500px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- INTRO SCREEN -->
   <div id="intro">
-    <h1>ENTERING THE ARCHIVE</h1>
+    <h1>ARTISTIC CONCEPTION</h1>
   </div>
 
-  <!-- THEME TOGGLE -->
   <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">◐</button>
 
-  <!-- SIDE NAVIGATION CARDS -->
-  <div class="side-nav">
-    <div class="side-card" onclick="document.getElementById('flashcards').scrollIntoView()">ARTISTIC CONCEPTION</div>
-    <div class="side-card" onclick="document.getElementById('collectionsContainer').scrollIntoView()">JPOV</div>
-  </div>
-
-  <!-- HERO SECTION -->
   <section class="hero">
     <h1>Artistic Conception</h1>
     <p>Cinematic Art and Collectible Pieces</p>
@@ -428,41 +566,26 @@
     </button>
   </section>
 
-  <!-- FLASH CARD SHOWCASE -->
   <section id="flashcards">
     <h2 class="section-title">ARCHIVE PREVIEWS</h2>
     <div class="flash-container" id="flashContainer"></div>
   </section>
 
-  <!-- COLLECTIONS -->
   <section>
     <h2 class="section-title">FEATURED COLLECTIONS</h2>
     <div class="collections" id="collectionsContainer"></div>
   </section>
 
-  <!-- ABOUT -->
   <section>
     <h2 class="section-title">Why This Exists</h2>
-    <div class="about">
+    <div class="center-box">
       <p>
         Artistic Conception is a cinematic archive where history, emotion, philosophy,
         science, tragedy, and visual storytelling converge into collectible artistic experiences.
         Alongside it exists JPOV — a visual universe of atmospheric renders, cinematic environments,
         and emotional visual worlds crafted through Blender and cinematic storytelling.
       </p>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section>
-    <h2 class="section-title">Contact & Inquiry</h2>
-    <div class="about">
-      <p>Every piece is produced in limited quantities and crafted on request.</p>
-      <div class="contact-buttons">
-        <a class="btn" href="YOUR_INSTAGRAM_LINK_HERE" target="_blank" rel="noopener">Instagram</a>
-        <a class="btn" href="https://wa.me/YOUR_WHATSAPP_NUMBER_HERE" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="btn" href="mailto:your@email.com">Email</a>
-      </div>
+      <a href="https://www.instagram.com/the_artistic_conception?igsh=N2VpaWFodnJ0NW56" target="_blank" rel="noopener" class="archive-link-btn">FOLLOW THE ARCHIVE</a>
     </div>
   </section>
 
@@ -470,46 +593,50 @@
     Artistic Conception © 2026
   </footer>
 
-  <!-- REQUEST MODAL -->
   <div class="modal" id="requestModal">
     <div class="modal-content">
-      <h3 id="modalArtworkTitle">Request Piece</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      
+      <div class="preview-pane">
+        <div class="mockup-frame" id="mockupFrameContainer">
+          <img src="" id="mockupImgTarget" class="mockup-art-render" alt="Preview Frame">
+        </div>
+      </div>
 
-      <select id="productType" onchange="handleProductTypeChange()">
-        <option value="Oversized Hoodie">Oversized Hoodie</option>
-        <option value="Matte Poster">Matte Poster</option>
-        <option value="Pendant">Pendant</option>
-        <option value="Canvas Print">Canvas Print</option>
-        <option value="Phone Wallpaper">Phone Wallpaper</option>
-      </select>
+      <div class="form-pane">
+        <h3 id="modalArtworkTitle">Request Piece</h3>
+        
+        <p class="meta-tag" style="margin-bottom: 8px; opacity: 0.5; font-size: 0.75rem; font-weight: 600; letter-spacing: 1px;">SELECT FORMAT</p>
+        <div class="product-grid">
+          <div class="product-tile selected" onclick="selectProductTile(this, 'Oversized Hoodie')">Hoodie</div>
+          <div class="product-tile" onclick="selectProductTile(this, 'Matte Poster')">Poster</div>
+          <div class="product-tile" onclick="selectProductTile(this, 'Canvas Print')">Canvas</div>
+          <div class="product-tile" onclick="selectProductTile(this, 'Pendant')">Pendant</div>
+          <div class="product-tile" style="grid-column: span 2" onclick="selectProductTile(this, 'Phone Wallpaper')">Phone Wallpaper</div>
+        </div>
 
-      <select id="productSize">
-        <option>S</option>
-        <option>M</option>
-        <option>L</option>
-        <option>XL</option>
-        <option>XXL</option>
-      </select>
+        <div id="sizeContainer">
+          <input type="text" id="productSize" placeholder="Enter Size (S, M, L, XL, XXL)" value="L" />
+        </div>
 
-      <input type="text" id="pincode" placeholder="Enter Pincode" />
-      <textarea id="notes" rows="4" placeholder="Additional Notes"></textarea>
+        <input type="text" id="pincode" placeholder="Enter Shipping Pincode" />
+        <textarea id="notes" rows="3" placeholder="Special Custom Notes / Packaging Requests"></textarea>
 
-      <p class="notice">
-        You will be redirected to Instagram DM. Pricing will be shared after confirming availability,
-        production format, and packaging options.
-      </p>
+        <div class="notice-box">
+          Order profile text details are auto-copied seamlessly to your clipboard. Tap button to head into our Instagram DMs to paste and confirm options.
+        </div>
 
-      <div class="btn-group">
-        <button class="btn" onclick="openInstagramDM()">OPEN INSTAGRAM DM</button>
-        <button class="btn" onclick="closeModal()">CLOSE</button>
+        <button class="btn insta-submit-btn" onclick="openInstagramDM()">OPEN INSTAGRAM DM</button>
       </div>
     </div>
   </div>
 
   <script>
-    // =========================================================
-    // INTRO ANIMATION TIMEOUT MANAGEMENT
-    // =========================================================
+    // System Configurations
+    let currentSelectedProduct = "Oversized Hoodie";
+    let selectedArtworkTitle = "";
+    let selectedArtworkImgUrl = "";
+
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         const intro = document.getElementById('intro');
@@ -517,7 +644,7 @@
           intro.style.opacity = '0';
           intro.style.visibility = 'hidden';
         }
-      }, 1800); // Triggers clean fade after 1.8 seconds
+      }, 1500);
     });
 
     // =========================================================
@@ -555,10 +682,9 @@
     ];
 
     // =========================================================
-    // RENDER FLASHCARDS & SYSTEM
+    // RENDER SYSTEM EXECUTIONS
     // =========================================================
     const flashContainer = document.getElementById('flashContainer');
-    
     if(artworks.length > 0) {
       artworks.forEach((art, index) => {
         const card = document.createElement('div');
@@ -568,7 +694,7 @@
           <div class="flash-overlay">
             <p>${art.category}</p>
             <h3>${art.title}</h3>
-            <p>${art.quote}</p>
+            <p class="flash-quote">"${art.quote}"</p>
           </div>
         `;
         flashContainer.appendChild(card);
@@ -576,7 +702,6 @@
 
       const flashCards = document.querySelectorAll('.flash-card');
       let currentFlash = 0;
-
       setInterval(() => {
         if(flashCards.length === 0) return;
         flashCards[currentFlash].classList.remove('active');
@@ -585,90 +710,111 @@
       }, 5000);
     }
 
-    // =========================================================
-    // RENDER COLLECTIONS
-    // =========================================================
     const collectionsContainer = document.getElementById('collectionsContainer');
-
     artworks.forEach(art => {
       const card = document.createElement('div');
       card.className = 'collection-card';
       card.innerHTML = `
         <img src="${art.image}" alt="${art.title}" loading="lazy">
         <div class="collection-content">
-          <p style="font-size:0.85rem; opacity:0.7">${art.category}</p>
+          <p class="meta-tag">${art.category}</p>
           <h3>${art.title}</h3>
           <p class="quote">"${art.quote}"</p>
           <p>${art.description}</p>
-          <div class="btn-group">
-            <button class="btn" onclick="openRequestModal('${art.title}')">REQUEST THIS PIECE</button>
-          </div>
+          <button class="btn" onclick="openRequestModal('${art.title}', '${art.image}')">REQUEST THIS PIECE</button>
         </div>
       `;
       collectionsContainer.appendChild(card);
     });
 
-    // =========================================================
-    // INTERACTIONS (THEME, MODAL, DRIVEN DROPDOWNS)
-    // =========================================================
     function toggleTheme(){
       document.body.classList.toggle('light-mode');
     }
 
-    let selectedArtwork = "";
-
-    function openRequestModal(title){
-      selectedArtwork = title;
+    // =========================================================
+    // VISUAL MODAL LOGIC ENGINE
+    // =========================================================
+    function openRequestModal(title, imgUrl){
+      selectedArtworkTitle = title;
+      selectedArtworkImgUrl = imgUrl;
+      
       document.getElementById('requestModal').style.display = 'flex';
-      document.getElementById('modalArtworkTitle').innerText = `Request: ${title}`;
-      handleProductTypeChange();
+      document.getElementById('modalArtworkTitle').innerText = title;
+      document.getElementById('mockupImgTarget').src = imgUrl;
+      
+      // Reset layout states to hoodie baseline defaults
+      const resetTile = document.querySelector('.product-tile');
+      selectProductTile(resetTile, 'Oversized Hoodie');
     }
 
     function closeModal(){
       document.getElementById('requestModal').style.display = 'none';
     }
 
-    function handleProductTypeChange() {
-      const product = document.getElementById('productType').value;
-      const sizeDropdown = document.getElementById('productSize');
-      const pincodeField = document.getElementById('pincode');
+    function selectProductTile(element, productType) {
+      currentSelectedProduct = productType;
       
-      if (product === "Phone Wallpaper") {
-        sizeDropdown.style.display = "none";
+      // Highlight correct visual interface button
+      document.querySelectorAll('.product-tile').forEach(tile => tile.classList.remove('selected'));
+      element.classList.add('selected');
+      
+      const sizeContainer = document.getElementById('sizeContainer');
+      const pincodeField = document.getElementById('pincode');
+      const frame = document.getElementById('mockupFrameContainer');
+      
+      // Clear visual design frames
+      frame.className = "mockup-frame";
+      
+      if (productType === "Phone Wallpaper") {
+        sizeContainer.style.display = "none";
         pincodeField.style.display = "none";
-      } else if (product === "Matte Poster" || product === "Canvas Print" || product === "Pendant") {
-        sizeDropdown.style.display = "none";
+        frame.classList.add('state-wallpaper');
+      } else if (productType === "Matte Poster") {
+        sizeContainer.style.display = "none";
         pincodeField.style.display = "block";
+        frame.classList.add('state-poster');
+      } else if (productType === "Canvas Print") {
+        sizeContainer.style.display = "none";
+        pincodeField.style.display = "block";
+        frame.classList.add('state-canvas');
+      } else if (productType === "Pendant") {
+        sizeContainer.style.display = "none";
+        pincodeField.style.display = "block";
+        frame.classList.add('state-pendant');
       } else {
-        sizeDropdown.style.display = "block";
+        // Default Hoodie UI configuration rules
+        sizeContainer.style.display = "block";
         pincodeField.style.display = "block";
+        frame.classList.add('state-hoodie');
       }
     }
 
     function openInstagramDM(){
-      const product = document.getElementById('productType').value;
-      const sizeDropdown = document.getElementById('productSize');
-      const size = sizeDropdown.style.display !== "none" ? sizeDropdown.value : "N/A";
+      const sizeInput = document.getElementById('productSize').value;
+      const size = currentSelectedProduct === "Oversized Hoodie" ? sizeInput : "N/A";
       const pincodeField = document.getElementById('pincode');
       const pincode = pincodeField.style.display !== "none" ? pincodeField.value : "Digital Delivery";
       const notes = document.getElementById('notes').value;
 
       const message = `Hello Artistic Conception,\n\n` +
         `I would like to request:\n\n` +
-        `Artwork: ${selectedArtwork}\n` +
-        `Product: ${product}\n` +
+        `Artwork: ${selectedArtworkTitle}\n` +
+        `Product: ${currentSelectedProduct}\n` +
         `Size: ${size}\n` +
         `Pincode: ${pincode}\n` +
         `Notes: ${notes}\n\n` +
-        `Please share availability and pricing details.`;
+        `Please share availability and details.`;
 
-      navigator.clipboard.writeText(message).then(() => {
-        alert('Inquiry copied to your clipboard! Instagram will now open. Simply paste it directly into the DM.');
-        window.open('https://www.instagram.com/the_artistic_conception?igsh=N2VpaWFodnJ0NW56', '_blank');
-      }).catch(err => {
-        console.error('Failed to copy text: ', err);
-        window.open('https://www.instagram.com/the_artistic_conception?igsh=N2VpaWFodnJ0NW56', '_blank');
-      });
+      const targetUrl = "https://www.instagram.com/the_artistic_conception?igsh=N2VpaWFodnJ0NW56";
+
+      // Instantly copy layout texts to user platform clip arrays
+      navigator.clipboard.writeText(message);
+
+      // Perform a clean raw navigation link assignment to pass security blockers natively
+      const cleanWindow = window.open(targetUrl, '_blank');
+      if (!cleanWindow || cleanWindow.closed) {
+          window.location.href = targetUrl;
+      }
     }
 
     window.onclick = function(event) {
@@ -680,4 +826,3 @@
   </script>
 </body>
 </html>
-
