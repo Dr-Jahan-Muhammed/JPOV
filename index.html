@@ -1,1 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artistic Conception</title>
+  <!--
+  ============================================================
+  HOW TO EDIT THIS WEBSITE LATER
+  ============================================================
+  1. CHANGE WEBSITE TITLE -> Search for: ARTISTIC CONCEPTION
+  2. ADD NEW ARTWORKS     -> Search for: ARTWORK DATA START
+  3. CHANGE INSTAGRAM LINK -> Search for: YOUR_INSTAGRAM_LINK_HERE
+  4. CHANGE WHATSAPP NUMBER -> Search for: YOUR_WHATSAPP_NUMBER_HERE
+  5. CHANGE COLORS         -> Search for: :root
+  ============================================================
+  -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #050505;
+      --bg-secondary: #111111;
+      --text: #f5f5f5;
+      --text-soft: #bdbdbd;
+      --border: rgba(255,255,255,0.12);
+      --glow: rgba(255,255,255,0.08);
+      --card: rgba(255,255,255,0.03);
+    }
+
+    body.light-mode {
+      --bg: #f2efe8;
+      --bg-secondary: #e8e2d9;
+      --text: #111111;
+      --text-soft: #555555;
+      --border: rgba(0,0,0,0.08);
+      --glow: rgba(0,0,0,0.05);
+      --card: rgba(0,0,0,0.03);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      overflow-x: hidden;
+      transition: background 0.5s ease, color 0.5s ease;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, serif;
+      letter-spacing: 2px;
+    }
+
+    section {
+      padding: 80px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* INTRO SCREEN */
+    #intro {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    #intro h1 {
+      font-size: 2rem;
+      color: white;
+      letter-spacing: 6px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    /* FILM GRAIN Overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* SIDE NAVIGATION BAR */
+    .side-nav {
+      position: fixed;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .side-card {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 18px 8px;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    body.light-mode .side-card {
+      background: rgba(0,0,0,0.04);
+    }
+
+    .side-card:hover {
+      background: rgba(255,255,255,0.15);
+      transform: rotate(180deg) scale(1.05);
+    }
+
+    /* THEME TOGGLE */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255,255,255,0.15);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      color: var(--text-soft);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      max-width: 600px;
+      margin-bottom: 12px;
+    }
+
+    .hero-btn {
+      margin-top: 30px;
+      padding: 14px 32px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      letter-spacing: 2px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.15);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    /* FLASH CARDS */
+    .flash-container {
+      position: relative;
+      width: 100%;
+      max-width: 450px;
+      margin: auto;
+      height: 550px;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .flash-card {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .flash-card.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .flash-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .flash-overlay {
+      position: absolute;
+      bottom: 0;
+      inset: auto 0 0 0;
+      padding: 30px 24px;
+      background: linear-gradient(to top, rgba(0,0,0,0.95) 20%, rgba(0,0,0,0.6) 70%, transparent);
+      color: #ffffff !important; /* Preserves crisp reading contrast across light & dark theme shifts */
+    }
+
+    .flash-overlay p { opacity: 0.8; font-size: 0.9rem; color: #ffffff !important; }
+    .flash-overlay h3 { margin: 5px 0; font-size: 1.6rem; color: #ffffff !important; }
+
+    /* COLLECTIONS */
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+    }
+
+    .collections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .collection-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s;
+    }
+
+    .collection-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .collection-card img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+    }
+
+    .collection-content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .collection-content h3 { margin-bottom: 10px; }
+    .collection-content .quote { font-style: italic; opacity: 0.75; margin-bottom: 12px; }
+    .collection-content p:not(.quote) { color: var(--text-soft); line-height: 1.6; margin-bottom: 20px; }
+    
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn:hover {
+      background: rgba(255,255,255,0.15);
+    }
+
+    /* ABOUT & CONTACT */
+    .about {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+      line-height: 1.8;
+      color: var(--text-soft);
+    }
+
+    .contact-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      color: var(--text-soft);
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+
+    /* MODAL */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 99999;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 500px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+    }
+
+    .modal-content h3 { margin-bottom: 20px; }
+
+    .modal-content input,
+    .modal-content select,
+    .modal-content textarea {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 8px;
+    }
+
+    body.light-mode .modal-content :is(input, select, textarea) {
+      background: rgba(0,0,0,0.03);
+    }
+
+    .notice {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    /* MOBILE RESPONSIVENESS */
+    @media(max-width:768px){
+      section { padding: 60px 16px; }
+      .side-nav { display: none; }
+      .flash-container { height: 450px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- INTRO SCREEN -->
+  <div id="intro">
+    <h1>ENTERING THE ARCHIVE</h1>
+  </div>
+
+  <!-- THEME TOGGLE -->
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">◐</button>
+
+  <!-- SIDE NAVIGATION CARDS -->
+  <div class="side-nav">
+    <div class="side-card" onclick="document.getElementById('flashcards').scrollIntoView()">ARTISTIC CONCEPTION</div>
+    <div class="side-card" onclick="document.getElementById('collectionsContainer').scrollIntoView()">JPOV</div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>Artistic Conception</h1>
+    <p>Cinematic Art and Collectible Pieces</p>
+    <p>Stories. Genius. Tragedy. Legacy.</p>
+    <button class="hero-btn" onclick="document.getElementById('flashcards').scrollIntoView()">
+      ENTER THE ARCHIVE
+    </button>
+  </section>
+
+  <!-- FLASH CARD SHOWCASE -->
+  <section id="flashcards">
+    <h2 class="section-title">ARCHIVE PREVIEWS</h2>
+    <div class="flash-container" id="flashContainer"></div>
+  </section>
+
+  <!-- COLLECTIONS -->
+  <section>
+    <h2 class="section-title">FEATURED COLLECTIONS</h2>
+    <div class="collections" id="collectionsContainer"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section>
+    <h2 class="section-title">Why This Exists</h2>
+    <div class="about">
+      <p>
+        Artistic Conception is a cinematic archive where history, emotion, philosophy,
+        science, tragedy, and visual storytelling converge into collectible artistic experiences.
+        Alongside it exists JPOV — a visual universe of atmospheric renders, cinematic environments,
+        and emotional visual worlds crafted through Blender and cinematic storytelling.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section>
+    <h2 class="section-title">Contact & Inquiry</h2>
+    <div class="about">
+      <p>Every piece is produced in limited quantities and crafted on request.</p>
+      <div class="contact-buttons">
+        <a class="btn" href="YOUR_INSTAGRAM_LINK_HERE" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn" href="https://wa.me/YOUR_WHATSAPP_NUMBER_HERE" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn" href="mailto:your@email.com">Email</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Artistic Conception © 2026
+  </footer>
+
+  <!-- REQUEST MODAL -->
+  <div class="modal" id="requestModal">
+    <div class="modal-content">
+      <h3 id="modalArtworkTitle">Request Piece</h3>
+
+      <select id="productType" onchange="handleProductTypeChange()">
+        <option value="Oversized Hoodie">Oversized Hoodie</option>
+        <option value="Matte Poster">Matte Poster</option>
+        <option value="Pendant">Pendant</option>
+        <option value="Canvas Print">Canvas Print</option>
+        <option value="Phone Wallpaper">Phone Wallpaper</option>
+      </select>
+
+      <select id="productSize">
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+        <option>XL</option>
+        <option>XXL</option>
+      </select>
+
+      <input type="text" id="pincode" placeholder="Enter Pincode" />
+      <textarea id="notes" rows="4" placeholder="Additional Notes"></textarea>
+
+      <p class="notice">
+        You will be redirected to Instagram DM. Pricing will be shared after confirming availability,
+        production format, and packaging options.
+      </p>
+
+      <div class="btn-group">
+        <button class="btn" onclick="openInstagramDM()">OPEN INSTAGRAM DM</button>
+        <button class="btn" onclick="closeModal()">CLOSE</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================
+    // INTRO ANIMATION TIMEOUT MANAGEMENT
+    // =========================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const intro = document.getElementById('intro');
+        if(intro) {
+          intro.style.opacity = '0';
+          intro.style.visibility = 'hidden';
+        }
+      }, 1800); // Triggers clean fade after 1.8 seconds
+    });
+
+    // =========================================================
+    // ARTWORK DATA START
+    // =========================================================
+    const artworks = [
+      {
+        title: "THE ATOMIC AGE",
+        category: "ARTISTIC CONCEPTION",
+        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop",
+        quote: "Stories of genius and destruction.",
+        description: "A cinematic exploration of humanity's most dangerous brilliance."
+      },
+      {
+        title: "WAR OF CURRENTS",
+        category: "ARTISTIC CONCEPTION",
+        image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1200&auto=format&fit=crop",
+        quote: "They were fighting over the future.",
+        description: "Electricity became ideology, ambition, and legacy."
+      },
+      {
+        title: "WINTER TERMINAL",
+        category: "JPOV",
+        image: "https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=1200&auto=format&fit=crop",
+        quote: "Silence remembers places differently.",
+        description: "A fog-soaked cinematic Blender environment."
+      },
+      {
+        title: "FOG ARCHIVE",
+        category: "JPOV",
+        image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop",
+        quote: "Some worlds exist only emotionally.",
+        description: "Atmospheric cinematic visual storytelling."
+      }
+    ];
+
+    // =========================================================
+    // RENDER FLASHCARDS & SYSTEM
+    // =========================================================
+    const flashContainer = document.getElementById('flashContainer');
+    
+    if(artworks.length > 0) {
+      artworks.forEach((art, index) => {
+        const card = document.createElement('div');
+        card.className = `flash-card ${index === 0 ? 'active' : ''}`;
+        card.innerHTML = `
+          <img src="${art.image}" alt="${art.title}">
+          <div class="flash-overlay">
+            <p>${art.category}</p>
+            <h3>${art.title}</h3>
+            <p>${art.quote}</p>
+          </div>
+        `;
+        flashContainer.appendChild(card);
+      });
+
+      const flashCards = document.querySelectorAll('.flash-card');
+      let currentFlash = 0;
+
+      setInterval(() => {
+        if(flashCards.length === 0) return;
+        flashCards[currentFlash].classList.remove('active');
+        currentFlash = (currentFlash + 1) % flashCards.length;
+        flashCards[currentFlash].classList.add('active');
+      }, 5000);
+    }
+
+    // =========================================================
+    // RENDER COLLECTIONS
+    // =========================================================
+    const collectionsContainer = document.getElementById('collectionsContainer');
+
+    artworks.forEach(art => {
+      const card = document.createElement('div');
+      card.className = 'collection-card';
+      card.innerHTML = `
+        <img src="${art.image}" alt="${art.title}" loading="lazy">
+        <div class="collection-content">
+          <p style="font-size:0.85rem; opacity:0.7">${art.category}</p>
+          <h3>${art.title}</h3>
+          <p class="quote">"${art.quote}"</p>
+          <p>${art.description}</p>
+          <div class="btn-group">
+            <button class="btn" onclick="openRequestModal('${art.title}')">REQUEST THIS PIECE</button>
+          </div>
+        </div>
+      `;
+      collectionsContainer.appendChild(card);
+    });
+
+    // =========================================================
+    // INTERACTIONS (THEME, MODAL, DRIVEN DROPDOWNS)
+    // =========================================================
+    function toggleTheme(){
+      document.body.classList.toggle('light-mode');
+    }
+
+    let selectedArtwork = "";
+
+    function openRequestModal(title){
+      selectedArtwork = title;
+      document.getElementById('requestModal').style.display = 'flex';
+      document.getElementById('modalArtworkTitle').innerText = `Request: ${title}`;
+      handleProductTypeChange();
+    }
+
+    function closeModal(){
+      document.getElementById('requestModal').style.display = 'none';
+    }
+
+    function handleProductTypeChange() {
+      const product = document.getElementById('productType').value;
+      const sizeDropdown = document.getElementById('productSize');
+      const pincodeField = document.getElementById('pincode');
+      
+      if (product === "Phone Wallpaper") {
+        sizeDropdown.style.display = "none";
+        pincodeField.style.display = "none";
+      } else if (product === "Matte Poster" || product === "Canvas Print" || product === "Pendant") {
+        sizeDropdown.style.display = "none";
+        pincodeField.style.display = "block";
+      } else {
+        sizeDropdown.style.display = "block";
+        pincodeField.style.display = "block";
+      }
+    }
+
+    function openInstagramDM(){
+      const product = document.getElementById('productType').value;
+      const sizeDropdown = document.getElementById('productSize');
+      const size = sizeDropdown.style.display !== "none" ? sizeDropdown.value : "N/A";
+      const pincodeField = document.getElementById('pincode');
+      const pincode = pincodeField.style.display !== "none" ? pincodeField.value : "Digital Delivery";
+      const notes = document.getElementById('notes').value;
+
+      const message = `Hello Artistic Conception,\n\n` +
+        `I would like to request:\n\n` +
+        `Artwork: ${selectedArtwork}\n` +
+        `Product: ${product}\n` +
+        `Size: ${size}\n` +
+        `Pincode: ${pincode}\n` +
+        `Notes: ${notes}\n\n` +
+        `Please share availability and pricing details.`;
+
+      navigator.clipboard.writeText(message).then(() => {
+        alert('Inquiry copied to your clipboard! Instagram will now open. Simply paste it directly into the DM.');
+        window.open('YOUR_INSTAGRAM_LINK_HERE', '_blank');
+      }).catch(err => {
+        console.error('Failed to copy text: ', err);
+        window.open('YOUR_INSTAGRAM_LINK_HERE', '_blank');
+      });
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('requestModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    }
+  </script>
+</body>
+</html>
 
